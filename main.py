@@ -1,7 +1,7 @@
 def display_todos(todos_list):
-    for index, task in enumerate(todos_list):
-        task_number = index + 1
-        print(f"{task_number} - {task.strip()}")
+    for ind, task in enumerate(todos_list):
+        task_num = ind + 1
+        print(f"{task_num} - {task.strip()}")
 
 
 def read_file_lines(file_path):
@@ -30,7 +30,6 @@ def print_no_tasks():
 
 FILE_PATH = "files/todos.txt"
 
-
 while True:
     user_input = input("Type add, show, edit, complete or exit: ")
 
@@ -42,8 +41,9 @@ while True:
 
         case "show" | "display":
             todos = read_file_lines(FILE_PATH)
+            formatted_todos = [todo.strip("\n") for todo in todos]
             if todos:
-                display_todos(todos)
+                display_todos(formatted_todos)
             else:
                 print_no_tasks()
 
@@ -55,8 +55,8 @@ while True:
                     task_number = int(input("Which todo number do you want to edit? "))
                     if 0 < task_number < len(todos) + 1:
                         index = task_number - 1
-                        new_todo = input(f"Edit todo {task_number} - {todos[index].strip()}"
-                                         f" with new task: ")
+                        current_task = todos[index].strip("\n")
+                        new_todo = input(f"Edit todo {task_number} - {current_task}: with new task: ")
                         todos[index] = new_todo.capitalize() + "\n"
                         write_file_lines(FILE_PATH, todos)
                     else:
