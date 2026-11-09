@@ -157,7 +157,8 @@ cython_debug/
 # Claude context
 CLAUDE.md
 
-# Test file
+# Test files
+test.txt
 test.py
 
 # PyCharm
